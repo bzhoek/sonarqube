@@ -1,13 +1,9 @@
-{ nixpkgs ? import <nixpkgs>
-, pkgs ? nixpkgs {}
-}:
-let
-  libsass = pkgs.libsass;
-  postgresql = pkgs.postgresql_12;
-in pkgs.mkShell {
+{ nixpkgs ? import <nixpkgs> , pkgs ? nixpkgs {} }:
+with pkgs;
+mkShell {
   buildInputs = [
-    pkgs.cargo-tarpaulin
-    pkgs.sonar-scanner-cli
-    pkgs.libiconv-darwin
+    cargo-tarpaulin
+    sonar-scanner-cli
+    libiconv-darwin
   ];
 }
