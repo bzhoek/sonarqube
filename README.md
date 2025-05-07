@@ -19,8 +19,8 @@ sonar.host.url=http://localhost:9000
 sonar.projectKey=gymrs
 sonar.sources=src
 sonar.tests=tests
-sonar.rust.clippy.reportPaths=target/clippy.json
-sonar.rust.lcov.reportPaths=target/lcov.info
+community.rust.clippy.reportPaths=target/clippy.json
+community.rust.lcov.reportPaths=target/lcov.info
 ```
 
 Onder Administrator, My Account, Security een Global Analysis Token `sqa_*`aanmaken of die van `Sonarqube Docker` in `1Password` gebruiken.
@@ -37,7 +37,7 @@ RUSTFLAGS="-Aclippy::missing_safety_doc" cargo clippy --message-format=json > ta
 
 ## Scanner
 
-Start de Java `sonar-scanner` uit `shell.nix` om de SonarQube data bij te werken met coverage en lint.
+Start de Java `sonar-scanner` van `shell.nix` in folder waar `sonar-project.properties` staat om de SonarQube data bij te werken met coverage en lint uit de analyse stap hierboven.
 
 ```sh
 nix-shell
