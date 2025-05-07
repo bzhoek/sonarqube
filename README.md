@@ -32,10 +32,12 @@ Onder Administrator, My Account, Security een Global Analysis Token `sqa_*`aanma
 Coverage klaarzetten in `target/lcov.info` en Clippy waarschuwingen in `target/clippy.json`, zodat de Scanner ze kan doorsturen.
 
 ```sh
-cargo tarpaulin --skip-clean --no-fail-fast --output-dir target --out Lcov
-cargo clippy --message-format=json &> target/clippy.json
+cargo tarpaulin --skip-clean --no-fail-fast --target-dir=target/coverage --output-dir target --out Lcov
+cargo clippy --message-format=json > target/clippy.json
 RUSTFLAGS="-Aclippy::missing_safety_doc" cargo clippy --message-format=json > target/clippy.json
 ```
+
+Door tarpaulin met `--target-dir` een andere folder te geven, vermijd je rebuilds door verschillen in `RUSTFLAGS` https://github.com/xd009642/tarpaulin/issues/1076.
 
 ## Scanner
 

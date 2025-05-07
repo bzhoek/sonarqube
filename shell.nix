@@ -7,8 +7,8 @@ mkShell {
     libiconv-darwin
   ];
   shellHook = ''
-    alias sonars="RUSTFLAGS=-Aclippy::missing_safety_doc \
-      cargo clippy --message-format=json > target/clippy.json; \
-      cargo tarpaulin --skip-clean --no-fail-fast --output-dir target --out Lcov"
+    export RUSTFLAGS="-Aclippy::missing_safety_doc"
+    alias sonars="cargo tarpaulin --skip-clean --no-fail-fast --target-dir=target/coverage --output-dir target --out Lcov ; \
+    cargo clippy --message-format=json > target/clippy.json"
   '';
 }
